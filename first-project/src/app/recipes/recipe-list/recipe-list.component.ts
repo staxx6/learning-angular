@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -7,9 +7,11 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
+  recipeWasSelected = new EventEmitter<Recipe>();
+
   recipes: Recipe[] = [
-    new Recipe('Test', 'DescTest', 'https://cdn.pixabay.com/photo/2017/11/08/15/34/recipe-2930786_960_720.jpg'),
-    new Recipe('Test', 'DescTest', 'https://cdn.pixabay.com/photo/2017/11/08/15/34/recipe-2930786_960_720.jpg')
+    new Recipe('Test', 'DescTest', '../../../assets/img/angular.png'),
+    new Recipe('Test', 'DescTest', '../../../assets/img/angular.png')
   ];
 
   constructor() { }
@@ -17,4 +19,7 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
   }
 
+  onRecipeSelected(recipe: Recipe) {
+    this.recipeWasSelected
+  }
 }
